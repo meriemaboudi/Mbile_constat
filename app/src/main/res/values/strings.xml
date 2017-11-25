@@ -20,4 +20,5 @@
     <string name="title_activity_list_sinister">ListSinisterActivity</string>
     <string name="title_activity_sinister">SinisterActivity</string>
     <string name="title_activity_test_prof">TestProf</string>
+    <string name="hello_blank_add_sinister_fragment">Hello blank add sinister fragment</string>
 </resources>

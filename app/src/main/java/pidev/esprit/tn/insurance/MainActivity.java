@@ -176,14 +176,16 @@ public class MainActivity extends AppCompatActivity
 
         //creating fragment object
         Fragment fragment = null;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //initializing the fragment object which is selected
         switch (itemId) {
             case R.id.nav_listSinister:
                 fragment = new ListSinisterFragment();
                 break;
-            case R.id.nav_menu2:
-                //fragment = new Menu2();
+            case R.id.nav_addSinister:
+                fragment = new AddSinisterFragment();
+                toolbar.setTitle("Add sinister");
                 break;
             case R.id.nav_menu3:
                 //fragment = new Menu3();
