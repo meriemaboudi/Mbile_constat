@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Insurance</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="possibilteSaisie">Possibility of manual entry below.</string>
+    <string name="insurance">Insurance company</string>
+    <string name="registration">Registration</string>
+    <string name="editTextNameInsurance">Name of the insurance company</string>
+    <string name="editTextRegistration">Your Vehicule Registration</string>
+    <string name="validate">Validate</string>
+
+    <string name="title_activity_Vehicle_B">Vehicle B</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_list_sinister">ListSinisterActivity</string>
+    <string name="title_activity_sinister">SinisterActivity</string>
+    <string name="title_activity_test_prof">TestProf</string>
+</resources>

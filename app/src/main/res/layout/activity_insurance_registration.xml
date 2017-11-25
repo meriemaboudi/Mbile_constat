@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/possibilteSaisie"
+        android:textColor="@color/black_color"
+        android:textSize="10pt"
+        android:layout_gravity="center">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/insurance"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/big_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/EditTextInsurance"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/editTextNameInsurance"
+        android:inputType="textPersonName"
+        android:layout_gravity="left">
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/big_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/EditTextRegistration"
+        android:layout_height="wrap_content"
+        android:hint="@string/editTextRegistration"
+        android:inputType="textPersonName"
+        android:layout_width="311dp">
+    </EditText>
+
+    <Button
+        android:id="@+id/ButtonValidate"
+        android:layout_height="wrap_content"
+        android:text="@string/validate"
+        android:onClick="validate"
+        android:layout_width="fill_parent">
+    </Button>
+
+    <Button
+        android:id="@+id/ButtonBack"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendFeedback"
+        android:text="Back"></Button>
+
+</LinearLayout>

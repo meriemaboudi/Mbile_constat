@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="pidev.esprit.tn.insurance.SinisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButtonback"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="-2dp" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/contentbanque"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/banqueliste"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.41" />
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButtonlogout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.41"
+        android:clickable="true"
+        app:elevation="24dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_lock_power_off" />
+
+</LinearLayout>
