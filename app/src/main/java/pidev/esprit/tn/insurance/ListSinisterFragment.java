@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 
-public class AddSinisterFragment extends Fragment {
+public class ListSinisterFragment extends Fragment {
 
     View rootviews;
     ListView listView;
     public static SinisterAdapter adapter;
 
-    public AddSinisterFragment() {
+    public ListSinisterFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class AddSinisterFragment extends Fragment {
         //change R.layout.yourlayoutfilename for each of your fragments
         Log.e("onCreateView","onCreateView");
 
-        rootviews = inflater.inflate(R.layout.fragment_add_sinister, container, false);
+        rootviews = inflater.inflate(R.layout.fragment_list_sinister, container, false);
 
         listView = (ListView) rootviews.findViewById(R.id.listView);
 
@@ -42,7 +42,7 @@ public class AddSinisterFragment extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_add_sinister, container, false);
+        return inflater.inflate(R.layout.fragment_list_sinister, container, false);
     }
 
 

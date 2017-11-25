@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         //initializing the fragment object which is selected
         switch (itemId) {
             case R.id.nav_adSinister:
-                fragment = new AddSinisterFragment();
+                fragment = new ListSinisterFragment();
                 break;
             case R.id.nav_menu2:
                 //fragment = new Menu2();
