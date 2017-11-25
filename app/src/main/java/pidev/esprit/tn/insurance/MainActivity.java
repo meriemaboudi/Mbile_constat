@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Add sinister");
+        toolbar.setTitle("List sinister");
         setSupportActionBar(toolbar);
 
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity
 
         //initializing the fragment object which is selected
         switch (itemId) {
-            case R.id.nav_adSinister:
+            case R.id.nav_listSinister:
                 fragment = new ListSinisterFragment();
                 break;
             case R.id.nav_menu2:
