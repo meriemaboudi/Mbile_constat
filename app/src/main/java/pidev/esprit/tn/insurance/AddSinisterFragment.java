@@ -46,6 +46,7 @@ import static android.app.Activity.RESULT_OK;
 public class AddSinisterFragment extends Fragment implements View.OnClickListener{
     private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister";
     View rootviews;
+    String mCurrentPhotoPath;
     ImageView ivPreview;
     private Button openCameraButton;
     private Button buttonAdd;
@@ -99,6 +100,7 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
         emailText = (EditText) rootviews.findViewById(R.id.emailText) ;
         nameInsurancCompanyText = (EditText) rootviews.findViewById(R.id.nameCompanyText) ;
         policyNumText = (EditText) rootviews.findViewById(R.id.numPolicyText) ;
+
 
 
         Log.i("cc",openCameraButton.getText().toString());
@@ -163,6 +165,7 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
                 params.put("email",email);
                 params.put("nameInsurancCompany",nameInsurancCompany);
                 params.put("policyNum",policyNum);
+                params.put("urlImage",urlImage);
                 //params.put("dateCreation;",timeStamp);
 
                 JsonObjectRequest jsonRequest = new JsonObjectRequest (Request.Method.POST, mJSONURLString,new JSONObject(params),
@@ -217,7 +220,7 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
         return rootviews;
     }
 
-    String mCurrentPhotoPath;
+
 
     private File createImageFile() throws IOException {
         // Create an image file name

@@ -69,12 +69,21 @@ public class ListSinisterFragment extends Fragment {
                                 JSONObject student = response.getJSONObject(count);
                                 Log.i("1", "4");
                                 // Get the current student (json object) data
-                                String nameInsured = student.getString("nameInsured");
-                                String nameConductor = student.getString("nameConductor");
+
+                                String nameFirstname = student.getString("nameFirstname");;
+                                String tel = student.getString("tel");;
+                                String email = student.getString("email");;
+                                String nameInsurancCompany = student.getString("nameInsurancCompany");;
+                                String policyNum = student.getString("policyNum");;
+                                String urlImage = student.getString("urlImage");;
                                 int id = student.getInt("id");
                                 Sinister sinister = new Sinister();
-                                sinister.setNameFirstname(nameInsured);
-                                sinister.setPolicyNum(nameConductor);
+                                sinister.setNameFirstname(nameFirstname);
+                                sinister.setTel(tel);
+                                sinister.setEmail(email);
+                                sinister.setNameInsurancCompany(nameInsurancCompany);
+                                sinister.setPolicyNum(policyNum);
+                                sinister.setUrlImage(urlImage);
                                 sinister.setId(id);
                                 Log.i("NameInsured", sinister.getNameFirstname());
                                 lstSinister.add(sinister);

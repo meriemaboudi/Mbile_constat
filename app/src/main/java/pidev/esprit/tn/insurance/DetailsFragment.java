@@ -3,13 +3,27 @@ package pidev.esprit.tn.insurance;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -17,10 +31,20 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailsFragment extends Fragment {
-    private EditText nameInsured;
+public class DetailsFragment extends Fragment implements View.OnClickListener{
+
+    private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister/";
+    ImageView ivPreview;
+    private EditText nameFirstnameText;
+    private EditText telText;
+    private EditText emailText;
+    private EditText nameInsurancCompanyText;
+    private EditText policyNumText;
+    private  String id;
+
+
     private Bundle bundle;
-    private Button openCameraButton;
+    private Button buttonCancel;
     private static int REQUEST_IMAGE_CAPTURE = 1;
     public DetailsFragment() {
         // Required empty public constructor
@@ -50,25 +74,83 @@ public class DetailsFragment extends Fragment {
 
         bundle = getArguments();
 
-        nameInsured = view.findViewById(R.id.nameInsured);
+
+        buttonCancel = view.findViewById(R.id.buttonCancel);
+        nameFirstnameText = view.findViewById(R.id.nameFirstnameText);
+        telText = (EditText) view.findViewById(R.id.telText) ;
+        emailText = (EditText) view.findViewById(R.id.emailText) ;
+        nameInsurancCompanyText = (EditText) view.findViewById(R.id.nameCompanyText) ;
+        policyNumText = (EditText) view.findViewById(R.id.numPolicyText) ;
+        ivPreview = (ImageView) view.findViewById(R.id.ivPreview);
 
 
         if(!bundle.isEmpty()){
             // "nameInsured" is the key of our first entry in the bundle
-            nameInsured.setText(bundle.getString("nameInsured"));
+            id = bundle.getString("id");
+            nameFirstnameText.setText(bundle.getString("nameFirstnameText"));
+            telText.setText(bundle.getString("telText"));
+            emailText.setText(bundle.getString("emailText"));
+            nameInsurancCompanyText.setText(bundle.getString("nameInsurancCompanyText"));
+            policyNumText.setText(bundle.getString("policyNumText"));
+            ivPreview.setImageURI(Uri.parse(bundle.getString("ivPreview")));
+
         }
-       /* openCameraButton.setOnClickListener(new View.OnClickListener() {
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-                    getActivity().startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-                }
+
+                Map<String,String> params = new HashMap<String,String>();
+                String url = mJSONURLString + id;
+                StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
+                        new Response.Listener<String>()
+                        {
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                Log.d("Response", response);
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+
+                            }
+                        }
+                ) {
+
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String> ();
+
+
+
+                        return params;
+                    }
+
+                };
+
+
+                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                requestQueue.add(putRequest);
+
+
+
             }
-        });*/
+        });
+
 
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.i("***","bbn");
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     }
 
 }

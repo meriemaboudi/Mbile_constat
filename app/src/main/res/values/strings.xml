@@ -39,5 +39,6 @@
 
     <string name="car_accident_damage">Car Accident Damage</string>
     <string name="car_accident_damage_join_photos">You can join photos of the car accident damage</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

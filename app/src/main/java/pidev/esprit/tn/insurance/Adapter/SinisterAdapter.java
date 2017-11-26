@@ -102,7 +102,13 @@ public class SinisterAdapter extends ArrayAdapter<Sinister> {
                 //sinisterItems.clear();
                 fragment = new DetailsFragment();
                 //Log.d("IdInsuredInfo",String.valueOf(sinister.getId()));
-                bundle.putString("nameInsured", sinisterItems.get(position).getNameFirstname());
+                bundle.putString("id", String.valueOf(sinisterItems.get(position).getId()));
+                bundle.putString("nameFirstnameText", sinisterItems.get(position).getNameFirstname());
+                bundle.putString("telText", sinisterItems.get(position).getTel());
+                bundle.putString("emailText", sinisterItems.get(position).getEmail());
+                bundle.putString("nameInsurancCompanyText", sinisterItems.get(position).getNameInsurancCompany());
+                bundle.putString("policyNumText", sinisterItems.get(position).getPolicyNum());
+                bundle.putString("ivPreview", sinisterItems.get(position).getUrlImage());
                 //Log.d("NameInsured",sinister.getNameInsured());
                 fragment.setArguments(bundle);
                 sinisterItems.clear();
