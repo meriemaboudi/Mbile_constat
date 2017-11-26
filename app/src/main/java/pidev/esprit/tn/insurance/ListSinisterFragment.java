@@ -73,10 +73,10 @@ public class ListSinisterFragment extends Fragment {
                                 String nameConductor = student.getString("nameConductor");
                                 int id = student.getInt("id");
                                 Sinister sinister = new Sinister();
-                                sinister.setNameInsured(nameInsured);
-                                sinister.setNameConductor(nameConductor);
+                                sinister.setNameFirstname(nameInsured);
+                                sinister.setPolicyNum(nameConductor);
                                 sinister.setId(id);
-                                Log.i("NameInsured", sinister.getNameInsured());
+                                Log.i("NameInsured", sinister.getNameFirstname());
                                 lstSinister.add(sinister);
 
                                 count++;

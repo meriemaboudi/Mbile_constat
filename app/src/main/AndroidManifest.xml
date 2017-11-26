@@ -18,6 +18,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        I'm beginner in programming Android apps and I dont much understand FileProviders. I'm trying to take a picture with camera, but I'm still getting this error:
+
+        FATAL EXCEPTION: main
+        Process: com.example.marek.myapplication, PID: 6747
+        java.lang.IllegalArgumentException: Failed to find configured root that contains /storage/emulated/0/Android/data/com.example.marek.myapplication/files/Pictures/JPEG_20170228_175633_470124220.jpg
+        at android.support.v4.content.FileProvider$SimplePathStrategy.getUriForFile(FileProvider.java:711)
+        at android.support.v4.content.FileProvider.getUriForFile(FileProvider.java:400)
+        at com.example.marek.myapplication.MainActivity.dispatchTakePictureIntent(MainActivity.java:56)
+        at com.example.marek.myapplication.MainActivity.access$100(MainActivity.java:22)
+        at com.example.marek.myapplication.MainActivity$1.onClick(MainActivity.java:35)
+        AndroidManifest.xml:
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.marek.myapplication.fileprovider"
+            android:enabled="true"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,6 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

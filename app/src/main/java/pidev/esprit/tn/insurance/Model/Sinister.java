@@ -1,5 +1,7 @@
 package pidev.esprit.tn.insurance.Model;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 /**
@@ -11,40 +13,18 @@ public class Sinister {
     private int id;
 
     //l'autrevehicule
-    String numSinister;
-    String compagnieAssurance;
-    String immatriculation;
-    String numContract;
-    String nameInsured;
-    String nameConductor;
-    String tel;
-    String mail;
-    String typeCar;
-    String ptChoc;
-    String description;
-    String circonstance;
-    String State;
+    private String nameFirstname;
+    private String tel;
+    private String email;
+    private String nameInsurancCompany;
+    private String policyNum;
     private Date dateCreation;
-    private Date dateAccident;
+    private String urlImage;
+    private Bitmap logo;
+
 
     public Sinister() {
-    }
-
-    public Sinister(String compagnieAssurance, String immatriculation, String numContract, String nameInsured, String nameConductor, String tel, String mail, String typeCar, String ptChoc, String description, String circonstance, String state, Date dateCreation, Date dateAccident) {
-        this.compagnieAssurance = compagnieAssurance;
-        this.immatriculation = immatriculation;
-        this.numContract = numContract;
-        this.nameInsured = nameInsured;
-        this.nameConductor = nameConductor;
-        this.tel = tel;
-        this.mail = mail;
-        this.typeCar = typeCar;
-        this.ptChoc = ptChoc;
-        this.description = description;
-        this.circonstance = circonstance;
-        State = state;
-        this.dateCreation = dateCreation;
-        this.dateAccident = dateAccident;
+        this.dateCreation = new Date();
     }
 
     public int getId() {
@@ -55,44 +35,12 @@ public class Sinister {
         this.id = id;
     }
 
-    public String getCompagnieAssurance() {
-        return compagnieAssurance;
+    public String getNameFirstname() {
+        return nameFirstname;
     }
 
-    public void setCompagnieAssurance(String compagnieAssurance) {
-        this.compagnieAssurance = compagnieAssurance;
-    }
-
-    public String getImmatriculation() {
-        return immatriculation;
-    }
-
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
-    }
-
-    public String getNumContract() {
-        return numContract;
-    }
-
-    public void setNumContract(String numContract) {
-        this.numContract = numContract;
-    }
-
-    public String getNameInsured() {
-        return nameInsured;
-    }
-
-    public void setNameInsured(String nameInsured) {
-        this.nameInsured = nameInsured;
-    }
-
-    public String getNameConductor() {
-        return nameConductor;
-    }
-
-    public void setNameConductor(String nameConductor) {
-        this.nameConductor = nameConductor;
+    public void setNameFirstname(String nameFirstname) {
+        this.nameFirstname = nameFirstname;
     }
 
     public String getTel() {
@@ -103,52 +51,28 @@ public class Sinister {
         this.tel = tel;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getTypeCar() {
-        return typeCar;
+    public String getNameInsurancCompany() {
+        return nameInsurancCompany;
     }
 
-    public void setTypeCar(String typeCar) {
-        this.typeCar = typeCar;
+    public void setNameInsurancCompany(String nameInsurancCompany) {
+        this.nameInsurancCompany = nameInsurancCompany;
     }
 
-    public String getPtChoc() {
-        return ptChoc;
+    public String getPolicyNum() {
+        return policyNum;
     }
 
-    public void setPtChoc(String ptChoc) {
-        this.ptChoc = ptChoc;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCirconstance() {
-        return circonstance;
-    }
-
-    public void setCirconstance(String circonstance) {
-        this.circonstance = circonstance;
-    }
-
-    public String getState() {
-        return State;
-    }
-
-    public void setState(String state) {
-        State = state;
+    public void setPolicyNum(String policyNum) {
+        this.policyNum = policyNum;
     }
 
     public Date getDateCreation() {
@@ -159,19 +83,19 @@ public class Sinister {
         this.dateCreation = dateCreation;
     }
 
-    public Date getDateAccident() {
-        return dateAccident;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setDateAccident(Date dateAccident) {
-        this.dateAccident = dateAccident;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
-    public String getNumSinister() {
-        return numSinister;
+    public Bitmap getLogo() {
+        return logo;
     }
 
-    public void setNumSinister(String numSinister) {
-        this.numSinister = numSinister;
+    public void setLogo(Bitmap logo) {
+        this.logo = logo;
     }
 }
