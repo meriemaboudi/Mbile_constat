@@ -21,4 +21,23 @@
     <string name="title_activity_sinister">SinisterActivity</string>
     <string name="title_activity_test_prof">TestProf</string>
     <string name="hello_blank_add_sinister_fragment">Hello blank add sinister fragment</string>
+
+    <!-- Fragment Add Sinister -->
+    <string name="accident_statement">Accident Statement</string>
+
+    <string name="insured_policy_holder">Insured/Policyholder</string>
+    <string name="name_insured_policy_holder">Name/Firstname</string>
+    <string name="tel_insured_policy_holder">Tel</string>
+    <string name="email_insured_policy_holder">Email</string>
+
+    <string name="insurance_company">Insurance Company</string>
+    <string name="name_insurance_company">Name</string>
+    <string name="policy_insurance_company">Policy N°</string>
+
+    <string name="place_accident">Accident Location</string>
+    <string name="car_accident_damage_join_place">Select accident location </string>
+
+    <string name="car_accident_damage">Car Accident Damage</string>
+    <string name="car_accident_damage_join_photos">You can join photos of the car accident damage</string>
+
 </resources>

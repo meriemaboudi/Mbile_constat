@@ -16,17 +16,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     private ListView listView;
 
     public static ArrayAdapter<Sinister> adapter;
+
+    public static NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,71 +54,9 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-
-        // Initialize a new JsonArrayRequest instance
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                mJSONURLString,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        int count = 0;
-                        while (count < response.length()) {
-                            try {
-                                // Loop through the array elements
-
-                                // Get current json object
-                                JSONObject student = response.getJSONObject(count);
-                                Log.i("1", "4");
-                                // Get the current student (json object) data
-                                String nameInsured = student.getString("nameInsured");
-                                String nameConductor = student.getString("nameConductor");
-                                Sinister sinister = new Sinister();
-                                sinister.setNameInsured(nameInsured);
-                                sinister.setNameConductor(nameConductor);
-                                listSinister.add(sinister);
-                                Log.i("sinister", sinister.getNameInsured());
-                                Log.i("sinister", listSinister.get(count).getNameInsured());
-                                items[count]= listSinister.get(count);
-
-
-                                count++;
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        adapter = new ArrayAdapter<Sinister>(MainActivity.this,android.R.layout.simple_list_item_1,items);
-                        if(!adapter.isEmpty()){
-                            Log.i("1", "is not empty");
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Do something when error occurred
-                Log.i("1", "*****");
-
-            }
-        }
-
-        );
-        // Add JsonArrayRequest to the RequestQueue
-        requestQueue.add(jsonArrayRequest);
-        //listView.setAdapter(adapter);
-
-
-
-
-
-
-
-
+        //navigationView.set
 
 
     }
@@ -182,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         switch (itemId) {
             case R.id.nav_listSinister:
                 fragment = new ListSinisterFragment();
+                toolbar.setTitle("List sinister");
                 break;
             case R.id.nav_addSinister:
                 fragment = new AddSinisterFragment();

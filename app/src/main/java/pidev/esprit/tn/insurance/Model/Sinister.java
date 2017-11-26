@@ -11,6 +11,7 @@ public class Sinister {
     private int id;
 
     //l'autrevehicule
+    String numSinister;
     String compagnieAssurance;
     String immatriculation;
     String numContract;
@@ -164,5 +165,13 @@ public class Sinister {
 
     public void setDateAccident(Date dateAccident) {
         this.dateAccident = dateAccident;
+    }
+
+    public String getNumSinister() {
+        return numSinister;
+    }
+
+    public void setNumSinister(String numSinister) {
+        this.numSinister = numSinister;
     }
 }
