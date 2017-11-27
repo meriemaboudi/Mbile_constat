@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentTransaction fragmentTransaction;
     public static List<Sinister> listSinister =new ArrayList<Sinister>();
-    private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister";
+
     private Context mContext;
     private Sinister[] items = new Sinister[1000];
     private ListView listView;

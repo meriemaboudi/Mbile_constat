@@ -3,15 +3,24 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/numSinister"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/avatar"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/avatar"
-        android:text="Meriem"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:id="@+id/layoutRowSinister">
+        <TextView
+            android:id="@+id/numSinister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:text="Meriem"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,12 +40,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pidev.esprit.tn.insurance.Model.Sinister;
+import pidev.esprit.tn.insurance.util.GMailSender;
 
 import static android.app.Activity.RESULT_OK;
 
 
 public class AddSinisterFragment extends Fragment implements View.OnClickListener{
-    private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister";
+    private String mJSONURLString = "http://192.168.56.1:18080/insurance-web/api/sinister";
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    String phoneNo;
+    String message;
     View rootviews;
     String mCurrentPhotoPath;
     ImageView ivPreview;
@@ -211,6 +216,8 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                 requestQueue.add(jsonRequest);
+                sendEmail();
+                sendSMS();
 
 
 
@@ -244,6 +251,59 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         Log.i("***","bbn");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    }
+
+    protected void sendEmail() {
+
+        try {
+            GMailSender sender = new GMailSender("aboudimariem93@gmail.com", "58323183A");
+            sender.sendMail("Accident Statement",
+                    "We successfuly received you Accident Statement.",
+                    "aboudimariem93@gmail.com",
+                    "meriem.aboudi@esprit.tn");
+        } catch (Exception e) {
+            Log.e("SendMail", e.getMessage(), e);
+        }
+
+
+
+    }
+
+    protected void sendSMS() {
+        String phoneNo = "0021658354602";
+        String sms = "We successfuly received you Accident Statement.";
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.SEND_SMS)) {
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, message, null, null);
+                    Toast.makeText(getActivity().getApplicationContext(), "SMS sent.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
+
     }
 }
 

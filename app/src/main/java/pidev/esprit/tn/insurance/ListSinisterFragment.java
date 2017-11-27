@@ -30,7 +30,7 @@ public class ListSinisterFragment extends Fragment {
     View rootviews;
     ListView listView;
     public static SinisterAdapter adapter;
-    private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister";
+    private String mJSONURLString = "http://192.168.56.1:18080/insurance-web/api/sinister";
     public  static List<Sinister> lstSinister=new ArrayList<Sinister>();
     private Context mContext;
     public ListSinisterFragment() {
@@ -76,6 +76,7 @@ public class ListSinisterFragment extends Fragment {
                                 String nameInsurancCompany = student.getString("nameInsurancCompany");;
                                 String policyNum = student.getString("policyNum");;
                                 String urlImage = student.getString("urlImage");;
+                                String state = student.getString("state");;
                                 int id = student.getInt("id");
                                 Sinister sinister = new Sinister();
                                 sinister.setNameFirstname(nameFirstname);
@@ -84,6 +85,7 @@ public class ListSinisterFragment extends Fragment {
                                 sinister.setNameInsurancCompany(nameInsurancCompany);
                                 sinister.setPolicyNum(policyNum);
                                 sinister.setUrlImage(urlImage);
+                                sinister.setState(state);
                                 sinister.setId(id);
                                 Log.i("NameInsured", sinister.getNameFirstname());
                                 lstSinister.add(sinister);

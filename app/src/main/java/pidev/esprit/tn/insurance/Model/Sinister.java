@@ -20,6 +20,7 @@ public class Sinister {
     private String policyNum;
     private Date dateCreation;
     private String urlImage;
+    private String state;
     private Bitmap logo;
 
 
@@ -97,5 +98,13 @@ public class Sinister {
 
     public void setLogo(Bitmap logo) {
         this.logo = logo;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

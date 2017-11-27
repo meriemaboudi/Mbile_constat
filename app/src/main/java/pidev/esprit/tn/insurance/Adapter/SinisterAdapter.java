@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -69,31 +70,24 @@ public class SinisterAdapter extends ArrayAdapter<Sinister> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-
-
-        /*if (inflater == null){
-            Log.i("*****","inflater is null");
-            inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);}
-        if (inflater == null){
-            Log.i("*****","inflater still null");
-            }
-        if (convertView == null){
-            Log.i("*****","convertView is null");
-            convertView = inflater.inflate(R.layout.row_sinister, null);}
-        if (convertView == null){
-            Log.i("*****","convertView still null");}*/
         if(convertView == null ) {
             convertView = LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.row_sinister, null);
         }
 
         TextView num = (TextView) convertView.findViewById(R.id.numSinister);
+        LinearLayout layoutRowSinister = convertView.findViewById(R.id.layoutRowSinister);
         sinister = sinisterItems.get(position);
         bundle.clear();
         if (num != null)
             Log.i("*****",num.getText().toString()) ;
-        num.setText(String.valueOf(sinister.getId()));
+        num.setText("Num Statement : "+String.valueOf(sinister.getId()));
 
+        /*layoutRowSinister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activity.getApplicationContext(), "Hello World", Toast.LENGTH_LONG).show();
+            }
+        });**/
         //add a ClickListener to the num TextView
         num.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +103,8 @@ public class SinisterAdapter extends ArrayAdapter<Sinister> {
                 bundle.putString("nameInsurancCompanyText", sinisterItems.get(position).getNameInsurancCompany());
                 bundle.putString("policyNumText", sinisterItems.get(position).getPolicyNum());
                 bundle.putString("ivPreview", sinisterItems.get(position).getUrlImage());
-                //Log.d("NameInsured",sinister.getNameInsured());
+                bundle.putString("stateText", sinisterItems.get(position).getState());
+                Log.i("stateText",sinisterItems.get(position).getState());
                 fragment.setArguments(bundle);
                 sinisterItems.clear();
                 //bundle is an Object where we can put extra data to pass it with a fragment

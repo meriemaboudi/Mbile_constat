@@ -33,13 +33,14 @@ import static android.app.Activity.RESULT_OK;
  */
 public class DetailsFragment extends Fragment implements View.OnClickListener{
 
-    private String mJSONURLString = "http://10.0.2.2:18080/insurance-web/api/sinister/";
+    private String mJSONURLString = "http://192.168.56.1:18080/insurance-web/api/sinister/";
     ImageView ivPreview;
     private EditText nameFirstnameText;
     private EditText telText;
     private EditText emailText;
     private EditText nameInsurancCompanyText;
     private EditText policyNumText;
+    private EditText stateText;
     private  String id;
 
 
@@ -82,6 +83,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         nameInsurancCompanyText = (EditText) view.findViewById(R.id.nameCompanyText) ;
         policyNumText = (EditText) view.findViewById(R.id.numPolicyText) ;
         ivPreview = (ImageView) view.findViewById(R.id.ivPreview);
+        stateText = (EditText) view.findViewById(R.id.stateText) ;
 
 
         if(!bundle.isEmpty()){
@@ -93,7 +95,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
             nameInsurancCompanyText.setText(bundle.getString("nameInsurancCompanyText"));
             policyNumText.setText(bundle.getString("policyNumText"));
             ivPreview.setImageURI(Uri.parse(bundle.getString("ivPreview")));
-
+            stateText.setText(bundle.getString("stateText"));
         }
 
         buttonCancel.setOnClickListener(new View.OnClickListener() {
