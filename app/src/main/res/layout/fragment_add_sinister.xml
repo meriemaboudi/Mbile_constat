@@ -23,7 +23,7 @@
                     android:id="@+id/openCameraButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="490dp"
+                    android:layout_marginTop="670dp"
 
                     android:text="Open Camera" />
 
@@ -31,7 +31,7 @@
                     android:id="@+id/buttonSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="690dp"
+                    android:layout_marginTop="870dp"
 
                     android:text="Add Sinister" />
 
@@ -254,6 +254,16 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.gms.maps.MapView
+                                android:id="@+id/mapView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="370dp" />
+                        </FrameLayout>
                     </LinearLayout>
 
                 </FrameLayout>
@@ -264,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="-80dp"
-                    android:layout_marginTop="410dp"
+                    android:layout_marginTop="590dp"
                     android:paddingTop="@dimen/normal_padding"
                     android:text="@string/car_accident_damage"
                     android:textColor="@color/colorPrimaryDark"
@@ -281,7 +291,7 @@
 
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="460dp"
+                        android:layout_marginTop="640dp"
                         android:layout_weight="1.71"
                         android:text="@string/car_accident_damage_join_photos"
                         android:textColor="@color/black_color"
@@ -293,12 +303,12 @@
                         android:id="@+id/ivPreview"
                         android:layout_width="match_parent"
                         android:layout_height="146dp"
-                        android:layout_marginTop="540dp"
+                        android:layout_marginTop="720dp"
                         app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="1258dp"
                         android:orientation="horizontal">
 
                     </LinearLayout>

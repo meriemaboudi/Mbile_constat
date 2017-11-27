@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,6 +32,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONObject;
 
@@ -45,7 +54,7 @@ import pidev.esprit.tn.insurance.util.GMailSender;
 import static android.app.Activity.RESULT_OK;
 
 
-public class AddSinisterFragment extends Fragment implements View.OnClickListener{
+public class AddSinisterFragment extends Fragment implements View.OnClickListener, OnMapReadyCallback {
     private String mJSONURLString = "http://192.168.56.1:18080/insurance-web/api/sinister";
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
     String phoneNo;
@@ -53,6 +62,8 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
     View rootviews;
     String mCurrentPhotoPath;
     ImageView ivPreview;
+    MapView mapView;
+    GoogleMap map;
     private Button openCameraButton;
     private Button buttonAdd;
     private EditText nameFirstnameText;
@@ -113,6 +124,13 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
             openCameraButton.setEnabled(false);
             ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
         }
+        if (map != null){
+            if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                map.setMyLocationEnabled(false);
+                ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+
+                ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+            } }
 
         openCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,6 +241,9 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
 
             }
         });
+        mapView = (MapView) rootviews.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         return rootviews;
     }
@@ -304,6 +325,73 @@ public class AddSinisterFragment extends Fragment implements View.OnClickListene
             }
         }
 
+    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+
+            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+        }
+        map = googleMap;
+        map.getUiSettings().setMyLocationButtonEnabled(false);
+
+        map.setMyLocationEnabled(true);
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+
+        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        if (location != null)
+        {
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 13));
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
+                    .zoom(13)                   // Sets the zoom
+                    .bearing(90)                // Sets the orientation of the camera to east
+                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+       /*
+       //in old Api Needs to call MapsInitializer before doing any CameraUpdateFactory call
+        try {
+            MapsInitializer.initialize(this.getActivity());
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+       */
+
+        // Updates the location and zoom of the MapView
+        /*CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(43.1, -87.9), 10);
+        map.animateCamera(cameraUpdate);*/
+
+        //map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(36.893, 10.186),11));
+
+    }
+    @Override
+    public void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
 
